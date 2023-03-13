@@ -14,7 +14,8 @@ import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { fakeNew } from "@/uititiles/fakeNews";
 import emailjs from "@emailjs/browser";
-
+import { FaHome, FaPhoneAlt } from "react-icons/fa";
+import { AiOutlineMail } from "react-icons/ai";
 const schema = yup
   .object({
     name: yup.string(),
@@ -88,11 +89,16 @@ export default function Home() {
   });
   const onSubmit = (data) => {
     emailjs
-      .send("service_vxh6gbr", "template_vlkptwn", {
-        name: data.name,
-        phone: data.phone,
-        address: data.address,
-      }, 'GAKnrx8iiEtv58CiL')
+      .send(
+        "service_vxh6gbr",
+        "template_vlkptwn",
+        {
+          name: data.name,
+          phone: data.phone,
+          address: data.address,
+        },
+        "GAKnrx8iiEtv58CiL"
+      )
       .then(
         function (response) {
           console.log("SUCCESS!", response.status, response.text);
@@ -126,45 +132,27 @@ export default function Home() {
         <div className={styles.logo}>
           <img src="https://slimweb.vn/site/xedienvinfast/images/user/887/logovinfast.png" />
         </div>
+        <div className={styles.btn_buy_now}>Đăng kí mua ngay</div>
       </div>
       <div className={styles.banner}>
         <div className={styles.slogan}>
-          <p>Apple Watch</p>
-          <span> ABC 4</span>
+          <p>Điều Hoà Thông Minh</p>
+          <span>Thiết kế nhỏ gọn làm lạnh nhanh</span>
         </div>
-        <div className={styles.promotion}>
-          <div className={styles.flash_sale}>
-            <div className={styles.flash_sale_title}>FLASH SALE</div>
-            <div className={styles.flash_sale_discount}>GIẢM 30%</div>
-            <div className={styles.flash_sale_price}>
-              <div className={styles.flash_sale_original_price}>5.450.000đ</div>
-              <div className={styles.flash_sale_new_price}>3.450.000đ</div>
-            </div>
-          </div>
-          <div className={styles.count_down}>
-            <div>Ưu đãi kết thúc sau:</div>
-            <Countdown
-              date={Date.now() + 1000 * 60 * 60 * 24 * 7}
-              renderer={renderer_count_down}
-            />
-          </div>
+        <div className={styles.banner_img}>
+          <img src="images/product.png" />
         </div>
-        <div
-          className={styles.buy_now}
-          onClick={() => {
-            myRef.current.scrollIntoView({ behavior: "smooth" });
-          }}
-        >
-          Buy Now
+        <div className={styles.banner_price}>
+          <div className={styles.btn_buy_now}>Đăng kí mua ngay</div>
+          <div className={styles.banner_price_only}>
+            <p>Giá chỉ</p>
+            <h3>3.489.000đ</h3>
+          </div>
         </div>
       </div>
-      <div className={styles.content_box}>
-        <h3>Mẫu xe máy điện thông minh đầu tiên</h3>
-        <p>
-          Đây là dòng xe được tích hợp nhiều công nghệ hiện đại bên trong thiết
-          kế
-        </p>
-        <p>điệu đà nhưng giá bán lại phù hợp với đại đa số người Việt</p>
+      <div className={styles.adve}>
+        <h3>Điều Hoà Mini Chất Lượng Cao</h3>
+        <p>Làm lạnh nhanh tích kiệm điện</p>
       </div>
       <div className={styles.slide}>
         <Slider {...settings}>
@@ -181,6 +169,77 @@ export default function Home() {
             <img alt="" src="images/slide-4.jpeg" />
           </div>
         </Slider>
+      </div>
+      <div className={styles.paragraph}>
+        <p>
+          Được gia mắt vào đầu năm 2020 và ngay lập tức đã làm mưa gió trên thị
+          trường. Đây là dòng sản phẩm rất Smart sẽ giúp bạn khắc phục tình
+          trạng sạc không đủ điện ở các thiết bị di động giúp sạc đầy viên pin
+          khổng lồ chỉ trong một thời gian ngắn.
+        </p>
+      </div>
+      <div className={styles.promotion}>
+        <p className={styles.promotion_discount}>Ưu đãi giảm giá</p>
+        <p className={styles.promotion_old_price}>5.450.000đ</p>
+      </div>
+      <div className={styles.flash_sale}>
+        <p className={styles.flash_sale_new_price}>3.450.000đ</p>
+        <div className={styles.flash_sale_line}></div>
+        <Countdown
+          date={Date.now() + 1000 * 60 * 60 * 24 * 7}
+          renderer={renderer_count_down}
+        />
+      </div>
+      <div ref={myRef}>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.login_form}>
+          <div className={styles.login_form_title}>Đặt hàng ngay tại đây</div>
+          <div className={styles.form_item}>
+            <input
+              className={styles.input_form}
+              {...register("name")}
+              placeholder="name"
+              autoComplete="do-not-autofill"
+            />
+            <p>{errors.name?.message}</p>
+          </div>
+          <div className={styles.form_item}>
+            <input
+              className={styles.input_form}
+              {...register("phone")}
+              placeholder="Số điện thoại"
+              autoComplete="do-not-autofill"
+            />
+            <p>{errors.phone?.message}</p>
+          </div>
+          <div className={styles.form_item}>
+            <textarea
+              className={styles.textarea_form}
+              rows={5}
+              {...register("address")}
+              placeholder="Địa chỉ"
+            />
+            <p>{errors.address?.message}</p>
+          </div>
+          <div className={styles.form_submit}>
+            <button className={styles.btn_buy_now} type="submit">
+              Đặt Hàng Ngay
+            </button>
+          </div>
+        </form>
+      </div>
+      <div className={styles.post}>
+        <div className={styles.post_content}>
+          <p>Công nghệ hút ẩm</p>
+          <h6>
+            Tự động phát hiện độ ẩm của phòng theo thời gian thực, máy sẽ ngừng
+            hút ẩm khi đạt đến độ ẩm đã cài đặt. Nếu độ ẩm tăng lên cao hơn mức
+            đó, máy sẽ tự động khởi động quá trình hút ẩm, giúp hạn chế nấm mốc,
+            bảo vệ sức khỏe các thành viên trong gia đình bạn.
+          </h6>
+        </div>
+        <div className={styles.post_img}>
+          <img src="images/hut-am.jpeg" />
+        </div>
       </div>
       <div className={styles.product_detail}>
         <div className={styles.product_block}>
@@ -211,8 +270,35 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div ref={myRef}>
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.login_form}>
+      <div className={styles.post}>
+        <div className={styles.post_content}>
+          <p>Tạo ion âm, ngăn ngừa virus nấm và vi khuẩn có hại</p>
+          <h6>
+            Có thể chúng ta chưa biết, độ ẩm cao ảnh hưởng đến sức khỏe con
+            người rất nhiều. Nếu như, độ ẩm cao trên 70% sẽ là môi trường lý
+            tưởng để các loại nấm mốc, vi khuẩn, vi rút sinh sôi, nảy nở, thậm
+            chí là các loại loại bọ bụi nhà. Từ đó con người sẽ bị các bệnh như
+            như dị ứng da, viêm mũi, hen suyễn, đau mắt, viêm đường hô hấp...
+          </h6>
+        </div>
+        <div className={styles.post_img}>
+          <img src="images/ion.jpeg" />
+        </div>
+      </div>
+      <div className={styles.post}>
+        <div className={styles.post_img}>
+          <img src="images/dry.jpeg" />
+        </div>
+        <div className={styles.post_content}>
+          <p>Làm mát nhanh chóng, hoạt đông êm ái</p>
+          <h6>
+            Làm mát nhanh, động cơ êm ái với độ ồn thấp , yên tĩnh đảm bảo giấc
+            ngủ của bạn
+          </h6>
+        </div>
+      </div>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.login_form}>
+          <div className={styles.login_form_title}>Đặt hàng ngay tại đây</div>
           <div className={styles.form_item}>
             <input
               className={styles.input_form}
@@ -241,67 +327,21 @@ export default function Home() {
             <p>{errors.address?.message}</p>
           </div>
           <div className={styles.form_submit}>
-            <button type="submit">Đặt Hàng Ngay</button>
+            <button className={styles.btn_buy_now} type="submit">
+              Đặt Hàng Ngay
+            </button>
           </div>
         </form>
-      </div>
-      <div className={styles.post}>
-        <div className={styles.post_content}>
-          <p>Công nghệ hút ẩm</p>
-          <h6>
-            Tự động phát hiện độ ẩm của phòng theo thời gian thực, máy sẽ ngừng
-            hút ẩm khi đạt đến độ ẩm đã cài đặt. Nếu độ ẩm tăng lên cao hơn mức
-            đó, máy sẽ tự động khởi động quá trình hút ẩm, giúp hạn chế nấm mốc,
-            bảo vệ sức khỏe các thành viên trong gia đình bạn.
-          </h6>
-        </div>
-        <div className={styles.post_img}>
-          <img src="images/hut-am.jpeg" />
-        </div>
-      </div>
-      <div className={styles.post}>
-        <div className={styles.post_content}>
-          <p>Tạo ion âm, ngăn ngừa virus nấm và vi khuẩn có hại</p>
-          <h6>
-            Có thể chúng ta chưa biết, độ ẩm cao ảnh hưởng đến sức khỏe con
-            người rất nhiều. Nếu như, độ ẩm cao trên 70% sẽ là môi trường lý
-            tưởng để các loại nấm mốc, vi khuẩn, vi rút sinh sôi, nảy nở, thậm
-            chí là các loại loại bọ bụi nhà. Từ đó con người sẽ bị các bệnh như
-            như dị ứng da, viêm mũi, hen suyễn, đau mắt, viêm đường hô hấp...
-          </h6>
-        </div>
-        <div className={styles.post_img}>
-          <img src="images/ion.jpeg" />
-        </div>
-      </div>
-      <div className={styles.post}>
-        <div className={styles.post_img}>
-          <img src="images/dry.jpeg" />
-        </div>
-        <div className={styles.post_content}>
-          <p>Làm mát nhanh chóng, hoạt đông êm ái</p>
-          <h6>
-            Làm mát nhanh, động cơ êm ái với độ ồn thấp , yên tĩnh đảm bảo giấc
-            ngủ của bạn
-          </h6>
-        </div>
-      </div>
       <div className={styles.footer}>
         <div className={styles.footer_bg}></div>
         <div className={styles.footer_box}>
-          <div className={styles.footer_logo}>
-            <img src="https://slimweb.vn/site/xedienvinfast/images/user/887/logovinfast.png" />
-          </div>
           <div className={styles.footer_title}>
             VINFAST Klara – Đại lý uỷ quyền cấp 1
           </div>
-          <div className={styles.footer_address}>
-            Số 39A Nguyễn Trãi, Thượng Đình, Thanh Xuân, TP Hà Nội
-          </div>
         </div>
-        <div className={styles.footer_contact}>Tel: 0123 456 789</div>
-        <div className={styles.footer_contact}>Email: example@gmail.com</div>
-        <div className={styles.footer_contact}>Facebook: hieudz.fb.com</div>
+        <div className={styles.footer_contact}><FaHome style={{marginRight: 10, fontSize: 25}}/><p>Số 39A Nguyễn Trãi, Thượng Đình, Thanh Xuân, TP Hà Nội</p></div>
+        <div className={styles.footer_contact}><FaPhoneAlt style={{marginRight: 10, fontSize:20}}/> <p>0123 456 789</p></div>
+        <div className={styles.footer_contact}><AiOutlineMail style={{marginRight: 10, fontSize:20}}/> <p>example@gmail.com</p></div>
       </div>
       <Modal
         isOpen={modalIsOpen}
@@ -325,7 +365,7 @@ export default function Home() {
           <button onClick={closeModal}>Close</button>
         </div>
       </Modal>
-      <ToastContainer
+      {/* <ToastContainer
         className={styles.toast_container}
         bodyClassName={styles.toasty_body}
         position="top-right"
@@ -333,7 +373,7 @@ export default function Home() {
         hideProgressBar={true}
         closeButton={false}
         limit={1}
-      />
+      /> */}
     </div>
   );
 }
