@@ -143,7 +143,7 @@ export default function Home() {
           <img src="images/product.png" />
         </div>
         <div className={styles.banner_price}>
-          <div className={styles.btn_buy_now}>Đăng kí mua ngay</div>
+          <div className={styles.btn_buy_now} style={{height: 50}}>Đăng kí mua ngay</div>
           <div className={styles.banner_price_only}>
             <p>Giá chỉ</p>
             <h3>3.489.000đ</h3>
