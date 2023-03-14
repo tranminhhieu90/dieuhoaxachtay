@@ -133,7 +133,14 @@ export default function Home() {
         <div className={styles.logo}>
           <img src="images/logo.png" />
         </div>
-        <div className={styles.btn_buy_now}>Đăng kí mua ngay</div>
+        <div
+          className={styles.btn_buy_now}
+          onClick={() => {
+            myRef.current.scrollIntoView({ behavior: "smooth" });
+          }}
+        >
+          Đăng kí mua ngay
+        </div>
       </div>
       <div className={styles.banner}>
         <div className={styles.slogan}>
@@ -144,7 +151,15 @@ export default function Home() {
           <img src="images/product.png" />
         </div>
         <div className={styles.banner_price}>
-          <div className={styles.btn_buy_now} style={{height: 50}}>Đăng kí mua ngay</div>
+          <div
+            className={styles.btn_buy_now}
+            style={{ height: 50 }}
+            onClick={() => {
+              myRef.current.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Đăng kí mua ngay
+          </div>
           <div className={styles.banner_price_only}>
             <p>Giá chỉ</p>
             <h3>3.489.000đ</h3>
@@ -300,40 +315,40 @@ export default function Home() {
       </div>
       <Comments />
       <form onSubmit={handleSubmit(onSubmit)} className={styles.login_form}>
-          <div className={styles.login_form_title}>Đặt hàng ngay tại đây</div>
-          <div className={styles.form_item}>
-            <input
-              className={styles.input_form}
-              {...register("name")}
-              placeholder="Họ Tên"
-              autoComplete="do-not-autofill"
-            />
-            <p>{errors.name?.message}</p>
-          </div>
-          <div className={styles.form_item}>
-            <input
-              className={styles.input_form}
-              {...register("phone")}
-              placeholder="Số điện thoại"
-              autoComplete="do-not-autofill"
-            />
-            <p>{errors.phone?.message}</p>
-          </div>
-          <div className={styles.form_item}>
-            <textarea
-              className={styles.textarea_form}
-              rows={5}
-              {...register("comment")}
-              placeholder="Phản hồi tới nhà phân phối"
-            />
-            <p>{errors.address?.message}</p>
-          </div>
-          <div className={styles.form_submit}>
-            <button className={styles.btn_buy_now} type="submit">
-              Đặt Hàng Ngay
-            </button>
-          </div>
-        </form>
+        <div className={styles.login_form_title}>Đặt hàng ngay tại đây</div>
+        <div className={styles.form_item}>
+          <input
+            className={styles.input_form}
+            {...register("name")}
+            placeholder="Họ Tên"
+            autoComplete="do-not-autofill"
+          />
+          <p>{errors.name?.message}</p>
+        </div>
+        <div className={styles.form_item}>
+          <input
+            className={styles.input_form}
+            {...register("phone")}
+            placeholder="Số điện thoại"
+            autoComplete="do-not-autofill"
+          />
+          <p>{errors.phone?.message}</p>
+        </div>
+        <div className={styles.form_item}>
+          <textarea
+            className={styles.textarea_form}
+            rows={5}
+            {...register("comment")}
+            placeholder="Phản hồi tới nhà phân phối"
+          />
+          <p>{errors.address?.message}</p>
+        </div>
+        <div className={styles.form_submit}>
+          <button className={styles.btn_buy_now} type="submit">
+            Đặt Hàng Ngay
+          </button>
+        </div>
+      </form>
       <div className={styles.footer}>
         <div className={styles.footer_bg}></div>
         <div className={styles.footer_box}>
@@ -341,9 +356,18 @@ export default function Home() {
             VINFAST Klara – Đại lý uỷ quyền cấp 1
           </div>
         </div>
-        <div className={styles.footer_contact}><FaHome style={{marginRight: 10, fontSize: 25}}/><p>Số 39A Nguyễn Trãi, Thượng Đình, Thanh Xuân, TP Hà Nội</p></div>
-        <div className={styles.footer_contact}><FaPhoneAlt style={{marginRight: 10, fontSize:20}}/> <p>0123 456 789</p></div>
-        <div className={styles.footer_contact}><AiOutlineMail style={{marginRight: 10, fontSize:20}}/> <p>example@gmail.com</p></div>
+        <div className={styles.footer_contact}>
+          <FaHome style={{ marginRight: 10, fontSize: 25 }} />
+          <p>Số 39A Nguyễn Trãi, Thượng Đình, Thanh Xuân, TP Hà Nội</p>
+        </div>
+        <div className={styles.footer_contact}>
+          <FaPhoneAlt style={{ marginRight: 10, fontSize: 20 }} />{" "}
+          <p>0123 456 789</p>
+        </div>
+        <div className={styles.footer_contact}>
+          <AiOutlineMail style={{ marginRight: 10, fontSize: 20 }} />{" "}
+          <p>example@gmail.com</p>
+        </div>
       </div>
       <Modal
         isOpen={modalIsOpen}
@@ -378,7 +402,7 @@ export default function Home() {
       /> */}
       <div className={styles.fix_tel}>
         <a href={`tel:0356235391`}>
-          <FaPhoneAlt/>
+          <FaPhoneAlt />
         </a>
       </div>
     </div>
