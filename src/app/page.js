@@ -374,6 +374,11 @@ export default function Home() {
         closeButton={false}
         limit={1}
       />
+      <div className={styles.fix_tel}>
+        <a href={`tel:0356235391`}>
+          <FaPhoneAlt/>
+        </a>
+      </div>
     </div>
   );
 }

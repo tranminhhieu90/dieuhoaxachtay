@@ -547,6 +547,25 @@
   background: cornflowerblue;
 }
 
+.fix_tel {
+  cursor: pointer;
+  background: #0288d1;
+  text-decoration: none;
+  z-index: 9999;
+  color: #FFF !important;
+  font-weight: 500;
+  font-size: 1.3em;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 18px;
+  right: 2%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: shake infinite 2s;
+}
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
