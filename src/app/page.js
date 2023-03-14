@@ -16,6 +16,7 @@ import { fakeNew } from "@/uititiles/fakeNews";
 import emailjs from "@emailjs/browser";
 import { FaHome, FaPhoneAlt } from "react-icons/fa";
 import { AiOutlineMail } from "react-icons/ai";
+import Comments from "@/components/comments";
 const schema = yup
   .object({
     name: yup.string(),
@@ -26,7 +27,7 @@ const schema = yup
         /^(84|0[3|5|7|8|9])+([0-9]{8})\b$/,
         "Số điện thoại không đúng định dạng"
       ),
-    address: yup.string(),
+    comment: yup.string(),
   })
   .required();
 const renderer_count_down = ({ days, hours, minutes, seconds, completed }) => {
@@ -130,7 +131,7 @@ export default function Home() {
     <div className={styles.main}>
       <div className={styles.header}>
         <div className={styles.logo}>
-          <img src="https://slimweb.vn/site/xedienvinfast/images/user/887/logovinfast.png" />
+          <img src="images/logo.png" />
         </div>
         <div className={styles.btn_buy_now}>Đăng kí mua ngay</div>
       </div>
@@ -186,7 +187,7 @@ export default function Home() {
         <p className={styles.flash_sale_new_price}>3.450.000đ</p>
         <div className={styles.flash_sale_line}></div>
         <Countdown
-          date={Date.now() + 1000 * 60 * 60 * 24 * 7}
+          date={Date.now() + 1000 * 60 * 60 * 2 + 1000 * 60 * 26}
           renderer={renderer_count_down}
         />
       </div>
@@ -197,7 +198,7 @@ export default function Home() {
             <input
               className={styles.input_form}
               {...register("name")}
-              placeholder="name"
+              placeholder="Họ Tên"
               autoComplete="do-not-autofill"
             />
             <p>{errors.name?.message}</p>
@@ -215,8 +216,8 @@ export default function Home() {
             <textarea
               className={styles.textarea_form}
               rows={5}
-              {...register("address")}
-              placeholder="Địa chỉ"
+              {...register("comment")}
+              placeholder="Phản hồi tới nhà phân phối"
             />
             <p>{errors.address?.message}</p>
           </div>
@@ -297,13 +298,14 @@ export default function Home() {
           </h6>
         </div>
       </div>
+      <Comments />
       <form onSubmit={handleSubmit(onSubmit)} className={styles.login_form}>
           <div className={styles.login_form_title}>Đặt hàng ngay tại đây</div>
           <div className={styles.form_item}>
             <input
               className={styles.input_form}
               {...register("name")}
-              placeholder="name"
+              placeholder="Họ Tên"
               autoComplete="do-not-autofill"
             />
             <p>{errors.name?.message}</p>
@@ -321,8 +323,8 @@ export default function Home() {
             <textarea
               className={styles.textarea_form}
               rows={5}
-              {...register("address")}
-              placeholder="Địa chỉ"
+              {...register("comment")}
+              placeholder="Phản hồi tới nhà phân phối"
             />
             <p>{errors.address?.message}</p>
           </div>
@@ -365,7 +367,7 @@ export default function Home() {
           <button onClick={closeModal}>Close</button>
         </div>
       </Modal>
-      <ToastContainer
+      {/* <ToastContainer
         className={styles.toast_container}
         bodyClassName={styles.toasty_body}
         position="top-right"
@@ -373,7 +375,7 @@ export default function Home() {
         hideProgressBar={true}
         closeButton={false}
         limit={1}
-      />
+      /> */}
       <div className={styles.fix_tel}>
         <a href={`tel:0356235391`}>
           <FaPhoneAlt/>
