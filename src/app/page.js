@@ -15,7 +15,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { fakeNew } from "@/uititiles/fakeNews";
 import emailjs from "@emailjs/browser";
 import { FaHome, FaPhoneAlt } from "react-icons/fa";
-import { AiOutlineMail } from "react-icons/ai";
+import { AiOutlineMail, AiOutlineCheckCircle } from "react-icons/ai";
 import Comments from "@/components/comments";
 const schema = yup
   .object({
@@ -224,29 +224,184 @@ export default function Home() {
       <div className={styles.product_detail}>
         <div className={styles.product_block}>
           <div className={styles.product_detail_title}>CHI TIẾT SẢN PHẨM</div>
-          <div className={styles.product_detail_item}>
-            <p>Danh mục</p> <p>Phụ kiện điện tử</p>
-          </div>
-          <div className={styles.product_detail_item}>
-            <p>Chất liệu</p> <p>Hợp kim nhôm</p>
-          </div>
-          <div className={styles.product_detail_item}>
-            <p>Xuất xứ</p> <p>Việt Nam</p>
-          </div>
+          <table className={styles.table}>
+            <tr>
+              <td>Mẫu mã</td>
+              <td>WST-WK420A</td>
+              <td>Dòng điện định mức</td>
+              <td>1.34A</td>
+            </tr>
+            <tr>
+              <td>Kiểu loại</td>
+              <td>Mini/Di động</td>
+              <td>Mức độ ồn</td>
+              <td>≤38dB(A)</td>
+            </tr>
+            <tr>
+              <td>Điều khiển</td>
+              <td>Từ xa / Cảm ứng</td>
+              <td>Gas làm lạnh</td>
+              <td>R290a</td>
+            </tr>
+            <tr>
+              <td>Chức năng</td>
+              <td>Điều hòa / Quạt</td>
+              <td>Kích thước máy</td>
+              <td>400*300*225mm</td>
+            </tr>
+            <tr>
+              <td>Công suất làm lạnh</td>
+              <td>420W / 1,433Btu</td>
+              <td>Kích thước đóng gói</td>
+              <td>469*350*265mm</td>
+            </tr>
+            <tr>
+              <td>Công suất tiêu thụ điện</td>
+              <td>280W</td>
+              <td>Khối lượng</td>
+              <td>9kg/10kg</td>
+            </tr>
+            <tr>
+              <td>Nguồn điện</td>
+              <td>220V~50Hz/60Hz</td>
+              <td>Dây cáp điện</td>
+              <td>1,500mm</td>
+            </tr>
+          </table>
         </div>
         <div className={styles.product_block}>
-          <div className={styles.product_detail_title}>MÔ TẢ SẢN PHẨM</div>
+          <div className={styles.product_detail_title}>TÍNH NĂNG</div>
           <div className={styles.product_detail_item}>
-            <b>Dung lượng</b>: 230 mAh
+            <AiOutlineCheckCircle
+              style={{
+                marginRight: 10,
+                fontSize: 26,
+                color: "#0077ffd6",
+                fontWeight: 700,
+              }}
+            />
+            <b>Máy nén piston hoạt động mạnh mẽ</b>
           </div>
           <div className={styles.product_detail_item}>
-            <b>Bộ nhớ</b>: 64M+128M
+            <AiOutlineCheckCircle
+              style={{
+                marginRight: 10,
+                fontSize: 26,
+                color: "#0077ffd6",
+                fontWeight: 700,
+              }}
+            />
+            <b>Làm mát nhanh</b>
           </div>
           <div className={styles.product_detail_item}>
-            <b>Kích thước màn hình</b>: 1.54 inch
+            <AiOutlineCheckCircle
+              style={{
+                marginRight: 10,
+                fontSize: 26,
+                color: "#0077ffd6",
+                fontWeight: 700,
+              }}
+            />
+            <b>Tùy chỉnh tốc độ quạt gió</b>
           </div>
           <div className={styles.product_detail_item}>
-            <b>Màu sắc</b>: Đen, Trắng Bạc, Xám Đen, Hồng
+            <AiOutlineCheckCircle
+              style={{
+                marginRight: 10,
+                fontSize: 26,
+                color: "#0077ffd6",
+                fontWeight: 700,
+              }}
+            />
+            <b>Gas R290a hiệu suất cao thân thiện với môi trường</b>
+          </div>
+          <div className={styles.product_detail_item}>
+            <AiOutlineCheckCircle
+              style={{
+                marginRight: 10,
+                fontSize: 26,
+                color: "#0077ffd6",
+                fontWeight: 700,
+              }}
+            />
+            <b>Tiết kiệm năng luợng</b>
+          </div>
+          <div className={styles.product_detail_item}>
+            <AiOutlineCheckCircle
+              style={{
+                marginRight: 10,
+                fontSize: 26,
+                color: "#0077ffd6",
+                fontWeight: 700,
+              }}
+            />
+            <b>Chế độ hút ẩm</b>
+          </div>
+          <div className={styles.product_detail_item}>
+            <AiOutlineCheckCircle
+              style={{
+                marginRight: 10,
+                fontSize: 26,
+                color: "#0077ffd6",
+                fontWeight: 700,
+              }}
+            />
+            <b>Động cơ DC không chổi than</b>
+          </div>
+          <div className={styles.product_detail_item}>
+            <AiOutlineCheckCircle
+              style={{
+                marginRight: 10,
+                fontSize: 26,
+                color: "#0077ffd6",
+                fontWeight: 700,
+              }}
+            />
+            <b>{`Tiếng ồn thấp<38 dB (A)`}</b>
+          </div>
+          <div className={styles.product_detail_item}>
+            <AiOutlineCheckCircle
+              style={{
+                marginRight: 10,
+                fontSize: 26,
+                color: "#0077ffd6",
+                fontWeight: 700,
+              }}
+            />
+            <b>Thiết kế sang trọng phù hợp với mọi không gian</b>
+          </div>
+          <div className={styles.product_detail_item}>
+            <AiOutlineCheckCircle
+              style={{
+                marginRight: 10,
+                fontSize: 26,
+                color: "#0077ffd6",
+                fontWeight: 700,
+              }}
+            />
+            <b>Màn hình cảm ứng & điều khiển từ xa</b>
+          </div>
+          <div className={styles.product_detail_item}>
+            <AiOutlineCheckCircle
+              style={{
+                marginRight: 10,
+                fontSize: 26,
+                color: "#0077ffd6",
+                fontWeight: 700,
+              }}
+            />
+            <b>Công nghệ lọc không khí bằng ion âm độc quyền</b>
+          </div>
+          <div className={styles.product_detail_item}>
+            <AiOutlineCheckCircle
+              style={{
+                marginRight: 10,
+                fontSize: 26,
+                color: "#0077ffd6",
+                fontWeight: 700,
+              }}
+            />
+            <b>Cánh đảo gió điều khiển bằng tay độc quyền</b>
           </div>
         </div>
       </div>

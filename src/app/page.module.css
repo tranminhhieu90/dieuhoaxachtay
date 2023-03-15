@@ -375,9 +375,8 @@
   line-height: 1.6;
 }
 .product_detail {
-  padding: 20px;
+  padding: 10px;
   border-top: 4px solid #e4e4e4;
-  margin-bottom: 10px;
 }
 
 .product_block {
@@ -388,7 +387,7 @@
 
 .product_detail_title {
   color: black;
-  font-size: 20px;
+  font-size: 24px;
   line-height: 1.6;
   margin: 15px 0px;
   font-weight: 600;
@@ -397,9 +396,10 @@
 
 .product_detail_item {
   display: flex;
-  color: #545454;
-  font-size: 15px;
+  color: black;
+  font-size: 14px;
   line-height: 1.6;
+  font-style: italic;
 }
 
 .product_detail_item p:first-child {
@@ -674,5 +674,14 @@
   justify-content: center;
   align-items: center;
   animation: shake infinite 2s;
+}
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.table td {
+  border: 1px solid #323131;
+  padding: 4px;
+  font-size: 12px;
 }
 /* Enable hover only on non-touch devices */
