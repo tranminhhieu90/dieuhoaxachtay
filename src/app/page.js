@@ -31,23 +31,23 @@ const schema = yup
   })
   .required();
 const renderer_count_down = ({ days, hours, minutes, seconds, completed }) => {
+  const convert_days = `0${days}`.substring(0, 2);
+  const convert_hours = `0${hours}`.substring(0, 2);
+  const convert_minutes = `0${minutes}`.substring(0, 2);
+  const convert_seconds = `0${seconds}`.substring(0, 2);
   return (
     <div className={styles.count_down_block}>
       <div className={styles.count_down_item}>
-        <p>0{days}</p>
-        <h6>Days</h6>
+        <p>{convert_days}</p>
       </div>
       <div className={styles.count_down_item}>
-        <p>{hours}</p>
-        <h6>Hours</h6>
+        <p>{convert_hours}</p>
       </div>
       <div className={styles.count_down_item}>
-        <p>{minutes}</p>
-        <h6>Min</h6>
+        <p>{convert_minutes}</p>
       </div>
       <div className={styles.count_down_item}>
-        <p>{seconds}</p>
-        <h6>Sec</h6>
+        <p>{convert_seconds}</p>
       </div>
     </div>
   );
@@ -111,14 +111,6 @@ export default function Home() {
     setIsOpen(true);
   };
   const settings = {
-    customPaging: function (i) {
-      return (
-        <div className={styles.slide_paging}>
-          <img src={`images/slide-${i + 1}.jpeg`} />
-        </div>
-      );
-    },
-    dots: true,
     infinite: true,
     dotsClass: "slick-dots-custom slick-thumb",
     autoplay: true,
@@ -134,46 +126,38 @@ export default function Home() {
           <img src="images/logo.png" />
         </div>
         <div
-          className={styles.btn_buy_now}
+          className={styles.voucher}
           onClick={() => {
             myRef.current.scrollIntoView({ behavior: "smooth" });
           }}
         >
-          Đăng kí mua ngay
+          <p>Ưu đãi lên tới</p> <span>30%</span>
         </div>
       </div>
-      <div className={styles.banner}>
-        <div className={styles.slogan}>
-          <p>Điều Hoà Thông Minh</p>
-          <span>Thiết kế nhỏ gọn làm lạnh nhanh</span>
-        </div>
-        <div className={styles.banner_img}>
-          <img src="images/product.png" />
-        </div>
-        <div className={styles.banner_price}>
-          <div
-            className={styles.btn_buy_now}
-            style={{ height: 50 }}
-            onClick={() => {
-              myRef.current.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            Đăng kí mua ngay
-          </div>
-          <div className={styles.banner_price_only}>
-            <p>Giá chỉ</p>
-            <h3>3.489.000đ</h3>
-          </div>
+      <div className={styles.remaining_product}>
+        <p>Số lượng chỉ còn</p>
+        <h3>50</h3>
+        <p>sản phẩm cuối cùng</p>
+      </div>
+
+      <div className={styles.flash_sale}>
+        <p className={styles.flash_sale_good_price}>GIÁ ƯU ĐÃI</p>
+        <div className={styles.flash_sale_price2}>
+          <p className={styles.flash_sale_old_price}>5.450.000đ</p>
+          <p className={styles.flash_sale_new_price}>3.450.000đ</p>
         </div>
       </div>
-      <div className={styles.adve}>
-        <h3>Điều Hoà Mini Chất Lượng Cao</h3>
-        <p>Làm lạnh nhanh tích kiệm điện</p>
+      <div className={styles.count_down_title}>
+        <p>Ưu đãi chỉ còn kéo dài trong</p>
       </div>
+      <Countdown
+        date={Date.now() + 1000 * 60 * 60 * 2 + 1000 * 60 * 26}
+        renderer={renderer_count_down}
+      />
       <div className={styles.slide}>
         <Slider {...settings}>
           <div className={styles.home_slide_item}>
-            <img alt="" src="images/slide-1.jpeg" />
+            <img alt="" src="images/IMG_0239.JPG" />
           </div>
           <div className={styles.home_slide_item}>
             <img alt="" src="images/slide-2.jpeg" />
@@ -182,9 +166,13 @@ export default function Home() {
             <img alt="" src="images/slide-3.jpeg" />
           </div>
           <div className={styles.home_slide_item}>
-            <img alt="" src="images/slide-4.jpeg" />
+            <img alt="" src="images/image6.jpg" />
           </div>
         </Slider>
+      </div>
+      <div className={styles.adve}>
+        <h3>Điều Hoà Mini Chất Lượng Cao</h3>
+        <p>Làm lạnh nhanh tích kiệm điện</p>
       </div>
       <div className={styles.paragraph}>
         <p>
@@ -194,18 +182,7 @@ export default function Home() {
           khổng lồ chỉ trong một thời gian ngắn.
         </p>
       </div>
-      <div className={styles.promotion}>
-        <p className={styles.promotion_discount}>Ưu đãi giảm giá</p>
-        <p className={styles.promotion_old_price}>5.450.000đ</p>
-      </div>
-      <div className={styles.flash_sale}>
-        <p className={styles.flash_sale_new_price}>3.450.000đ</p>
-        <div className={styles.flash_sale_line}></div>
-        <Countdown
-          date={Date.now() + 1000 * 60 * 60 * 2 + 1000 * 60 * 26}
-          renderer={renderer_count_down}
-        />
-      </div>
+
       <div ref={myRef}>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.login_form}>
           <div className={styles.login_form_title}>Đặt hàng ngay tại đây</div>
@@ -243,20 +220,7 @@ export default function Home() {
           </div>
         </form>
       </div>
-      <div className={styles.post}>
-        <div className={styles.post_content}>
-          <p>Công nghệ hút ẩm</p>
-          <h6>
-            Tự động phát hiện độ ẩm của phòng theo thời gian thực, máy sẽ ngừng
-            hút ẩm khi đạt đến độ ẩm đã cài đặt. Nếu độ ẩm tăng lên cao hơn mức
-            đó, máy sẽ tự động khởi động quá trình hút ẩm, giúp hạn chế nấm mốc,
-            bảo vệ sức khỏe các thành viên trong gia đình bạn.
-          </h6>
-        </div>
-        <div className={styles.post_img}>
-          <img src="images/hut-am.jpeg" />
-        </div>
-      </div>
+
       <div className={styles.product_detail}>
         <div className={styles.product_block}>
           <div className={styles.product_detail_title}>CHI TIẾT SẢN PHẨM</div>
@@ -284,6 +248,44 @@ export default function Home() {
           <div className={styles.product_detail_item}>
             <b>Màu sắc</b>: Đen, Trắng Bạc, Xám Đen, Hồng
           </div>
+        </div>
+      </div>
+      <div className={styles.banner}>
+        <div className={styles.slogan}>
+          <p>Điều Hoà Thông Minh</p>
+          <span>Thiết kế nhỏ gọn làm lạnh nhanh</span>
+        </div>
+        <div className={styles.banner_img}>
+          <img src="images/product.png" />
+        </div>
+        <div className={styles.banner_price}>
+          <div
+            className={styles.btn_buy_now}
+            style={{ height: 50 }}
+            onClick={() => {
+              myRef.current.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Đăng kí mua ngay
+          </div>
+          <div className={styles.banner_price_only}>
+            <p>Giá chỉ</p>
+            <h3>3.489.000đ</h3>
+          </div>
+        </div>
+      </div>
+      <div className={styles.post}>
+        <div className={styles.post_content}>
+          <p>Công nghệ hút ẩm</p>
+          <h6>
+            Tự động phát hiện độ ẩm của phòng theo thời gian thực, máy sẽ ngừng
+            hút ẩm khi đạt đến độ ẩm đã cài đặt. Nếu độ ẩm tăng lên cao hơn mức
+            đó, máy sẽ tự động khởi động quá trình hút ẩm, giúp hạn chế nấm mốc,
+            bảo vệ sức khỏe các thành viên trong gia đình bạn.
+          </h6>
+        </div>
+        <div className={styles.post_img}>
+          <img src="images/hut-am.jpeg" />
         </div>
       </div>
       <div className={styles.post}>
@@ -352,9 +354,7 @@ export default function Home() {
       <div className={styles.footer}>
         <div className={styles.footer_bg}></div>
         <div className={styles.footer_box}>
-          <div className={styles.footer_title}>
-            Đại lý uỷ quyền
-          </div>
+          <div className={styles.footer_title}>Đại lý uỷ quyền</div>
         </div>
         <div className={styles.footer_contact}>
           <FaHome style={{ marginRight: 10, fontSize: 25 }} />
