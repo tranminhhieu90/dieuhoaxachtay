@@ -1,9 +1,10 @@
 import { comments } from "@/uititiles/comments";
 import styles from "./comments.module.css";
 import ReactStars from "react-rating-stars-component";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import ReactPaginate from "react-paginate";
 export default function Comments() {
+  const divRef = useRef(null);
   const [itemOffset, setItemOffset] = useState(0);
 
   const endOffset = itemOffset + 5;
@@ -12,14 +13,12 @@ export default function Comments() {
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * 5) % comments.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
+    divRef.current.scrollIntoView({ behavior: "smooth" });
     setItemOffset(newOffset);
   };
   return (
     <div className={styles.wrapper}>
-      <div className={styles.comments}>Tất cả bình luận</div>
+      <div ref={divRef} className={styles.comments}>Tất cả bình luận</div>
       <div className={styles.all_comments}>{comments.length} Bình luận</div>
       <div className={styles.line}></div>
       {currentItems.map((item, index) => {
@@ -51,11 +50,12 @@ export default function Comments() {
       <div id="container">
         <ReactPaginate
           breakLabel="..."
-          nextLabel="next >"
+          nextLabel=">"
           onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
+          pageRangeDisplayed={2}
+          marginPagesDisplayed={2}
           pageCount={pageCount}
-          previousLabel="< previous"
+          previousLabel="<"
           renderOnZeroPageCount={null}
           pageClassName={styles.page_item}
           pageLinkClassName={styles.page_link}
