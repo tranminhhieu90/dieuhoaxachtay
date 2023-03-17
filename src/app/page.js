@@ -415,7 +415,7 @@ export default function Home() {
         </div>
         <div className={styles.banner_price}>
           <div
-            className={styles.btn_buy_now}
+            className={styles.btn_buy_now }
             style={{ height: 50 }}
             onClick={() => {
               myRef.current.scrollIntoView({ behavior: "smooth" });
@@ -512,16 +512,16 @@ export default function Home() {
           <div className={styles.footer_title}>Đại lý uỷ quyền</div>
         </div>
         <div className={styles.footer_contact}>
-          <FaHome style={{ marginRight: 10, fontSize: 25 }} />
-          <p>Số 39A Nguyễn Trãi, Thượng Đình, Thanh Xuân, TP Hà Nội</p>
+          <FaHome  className={styles.footer_home_icon}/>
+          <p>Trịnh Văn Bô, Xuân Phương, Quận Nam Từ LIêm, Hà Nội</p>
         </div>
         <div className={styles.footer_contact}>
-          <FaPhoneAlt style={{ marginRight: 10, fontSize: 20 }} />{" "}
-          <p>0123 456 789</p>
+          <FaPhoneAlt  />
+          <a href={`tel:0976027317`}>0976027317</a>
         </div>
         <div className={styles.footer_contact}>
-          <AiOutlineMail style={{ marginRight: 10, fontSize: 20 }} />{" "}
-          <p>example@gmail.com</p>
+          <AiOutlineMail  />
+          <a href={`mailto:dieuhoaxachtay@gmail.com`}> <p>dieuhoaxachtay@gmail.com</p></a>
         </div>
       </div>
       <Modal
@@ -541,7 +541,7 @@ export default function Home() {
           </p>
           <p>
             Nếu Quý Khách có thắc mắc, xin vui lòng liên hệ số hotline
-            <span>19006969</span>.
+            <span>0976027317</span>.
           </p>
           <button onClick={closeModal}>Close</button>
         </div>
@@ -556,7 +556,7 @@ export default function Home() {
         limit={1}
       />
       <div className={styles.fix_tel}>
-        <a href={`tel:0356235391`}>
+        <a href={`tel:0976027317`}>
           <FaPhoneAlt />
         </a>
       </div>
