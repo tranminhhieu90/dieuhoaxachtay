@@ -17,6 +17,7 @@ import emailjs from "@emailjs/browser";
 import { FaHome, FaPhoneAlt } from "react-icons/fa";
 import { AiOutlineMail, AiOutlineCheckCircle } from "react-icons/ai";
 import Comments from "@/components/comments";
+import { slideImages } from "@/uititiles/slideImages";
 const schema = yup
   .object({
     name: yup.string(),
@@ -156,18 +157,13 @@ export default function Home() {
       />
       <div className={styles.slide}>
         <Slider {...settings}>
-          <div className={styles.home_slide_item}>
-            <img alt="" src="images/IMG_0239.JPG" />
-          </div>
-          <div className={styles.home_slide_item}>
-            <img alt="" src="images/slide-2.jpeg" />
-          </div>
-          <div className={styles.home_slide_item}>
-            <img alt="" src="images/slide-3.jpeg" />
-          </div>
-          <div className={styles.home_slide_item}>
-            <img alt="" src="images/image6.jpg" />
-          </div>
+          {slideImages.map((item, index) => {
+            return (
+              <div key={index} className={styles.home_slide_item}>
+                <img alt="" src={item} />
+              </div>
+            );
+          })}
         </Slider>
       </div>
       <div className={styles.adve}>
@@ -415,7 +411,7 @@ export default function Home() {
         </div>
         <div className={styles.banner_price}>
           <div
-            className={styles.btn_buy_now }
+            className={styles.btn_buy_now}
             style={{ height: 50 }}
             onClick={() => {
               myRef.current.scrollIntoView({ behavior: "smooth" });
@@ -512,16 +508,19 @@ export default function Home() {
           <div className={styles.footer_title}>Đại lý uỷ quyền</div>
         </div>
         <div className={styles.footer_contact}>
-          <FaHome  className={styles.footer_home_icon}/>
+          <FaHome className={styles.footer_home_icon} />
           <p>Trịnh Văn Bô, Xuân Phương, Quận Nam Từ LIêm, Hà Nội</p>
         </div>
         <div className={styles.footer_contact}>
-          <FaPhoneAlt  />
+          <FaPhoneAlt />
           <a href={`tel:0976027317`}>0976027317</a>
         </div>
         <div className={styles.footer_contact}>
-          <AiOutlineMail  />
-          <a href={`mailto:dieuhoaxachtay@gmail.com`}> <p>dieuhoaxachtay@gmail.com</p></a>
+          <AiOutlineMail />
+          <a href={`mailto:dieuhoaxachtay@gmail.com`}>
+            {" "}
+            <p>dieuhoaxachtay@gmail.com</p>
+          </a>
         </div>
       </div>
       <Modal
