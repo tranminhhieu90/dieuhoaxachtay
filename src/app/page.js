@@ -92,14 +92,14 @@ export default function Home() {
   const onSubmit = (data) => {
     emailjs
       .send(
-        "service_vxh6gbr",
-        "template_vlkptwn",
+        "service_p2gadnw",
+        "template_2e6m17n",
         {
           name: data.name,
           phone: data.phone,
           address: data.address,
         },
-        "GAKnrx8iiEtv58CiL"
+        "1YqUmC0z-ppEde3FB"
       )
       .then(
         function (response) {
